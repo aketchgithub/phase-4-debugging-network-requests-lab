@@ -71,3 +71,21 @@ developing your own process.
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+ <!-- Add a new toy when form is submitted; -->
+ Made frontend requests, by enterig some data in the create new toys input form then submitted. 
+ Then inspected Console tab, and the Network tab. The request returns a 500 Internal Server Error.
+ Checked the rails server logs in the terminal and saw, 
+ NameError (uninitialized constant ToysController::Toys):
+ This gave me a clear place to look for the error indicating that we were using a constant 'Toys' incorrectly.
+
+ <!-- update the number of likes for a toy -->
+ Tried updating the likes for toy in the frontend, well, it errored out a syntax error. This is because we expect the server to return a string of JSON-formatted data, but the server is not returning any content.
+ Back to our toys controller.rb file, updated the 'update action' to render to json and updating the likes should be working!
+
+ <!-- Donating a toy to Goodwill and delete it from the database -->
+ By donating a toy to Goodwill, it errored out 
+ ActionController::RoutingError (No route matches [DELETE] "/toys/1"):
+ The error message indicates there is no route defined for the delete method on the '/toys/:id' endpoint. To fix this, I defined the route for delete method on the '/toys/:id endpoint in the 'config/routes.rb' file.
+ 
+ 
+
